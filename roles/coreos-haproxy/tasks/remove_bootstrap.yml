@@ -1,0 +1,8 @@
+---
+# Cleanup script to remove bootstrap once OCP cluster is up and running
+- name: Remove bootstrap node
+  lineinfile:
+    regexp: "server {{ haproxy_node[0] }} {{ haproxy_node[0]['ipv4']}}"
+    state: absent
+  delegate_to: haproxy_node[0]
+  notify: restart haproxy
