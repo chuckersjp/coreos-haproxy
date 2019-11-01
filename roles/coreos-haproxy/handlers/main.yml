@@ -1,2 +1,7 @@
 ---
 # handlers file for roles/coreos-haproxy
+
+- name: restart haproxy
+  service:
+    name: haproxy
+    state: restarted
