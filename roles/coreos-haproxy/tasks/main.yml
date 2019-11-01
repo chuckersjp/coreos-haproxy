@@ -1,2 +1,38 @@
 ---
 # tasks file for roles/coreos-haproxy
+block:
+  - name: Install haproxy and firewalld
+    yum:
+      name: 
+        - haproxy
+        - firewalld
+      state: latest
+
+  - name: Enable haproxy
+    sevice:
+      name: haproxy
+      state: started
+      enabled: true
+
+  - name: Enable firewalld
+    sevice:
+      name: firewalld
+      state: started
+      enabled: true
+
+  - name: Configure firewalld
+    firewalld:
+      port: "{{ item }}"
+      state: enabled
+      permanent: true
+      immediate: true
+    loop: "{{ firewall_ports }}"
+
+  - name: Create haproxy config
+    template:
+      src: haproxy.cfg.j2
+      dest: /etc/haproxy/haproxy.cfg
+    notify: restart haproxy
+
+delegate_to: haproxy_node[0]  
+run_once: true
