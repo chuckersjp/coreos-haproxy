@@ -55,3 +55,5 @@ That is what the `remove_bootstrap.yml` file is for.  This is NOT called as part
 no telling how long it will take to stand up the cluster.  It is provided here as a convience in the 
 `role/coreos-haproxy/tasks` directory.
 
+# Acknowledgements
+Special thanks to Christian Hernandez for his initial work on this found at https://github.com/christianh814/openshift-toolbox/
