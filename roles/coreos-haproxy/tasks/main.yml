@@ -28,6 +28,12 @@ block:
       immediate: true
     loop: "{{ firewall_ports }}"
 
+  - name: Allow HAPRoxy to work with SELinux
+    seboolean:
+      name: haproxy_connect_any
+      state: true
+      persistent: true
+
   - name: Create haproxy config
     template:
       src: haproxy.cfg.j2
