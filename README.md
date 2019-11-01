@@ -11,9 +11,14 @@ This playbook will require an inventory file similar to the following:
 ---
 all:
   children:
+    haproxy_node:
+      hosts:
+        haproxy.example.com:
+          ipv4: 192.168.122.10
+
     bootstrap_node:
       hosts:
-        bootstrap:
+        bootstrap.example.com:
           ipv4: 192.168.122.15
     
     masters:
